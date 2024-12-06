@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Film</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Nuevo Film</h2>
+    <form th:action="@{/films/save}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="release_year" class="form-label">Año de Lanzamiento</label>
+            <input type="number"
+                   class="form-control"
+                   id="release_year"
+                   name="release_year"
+                   min="1901"
+                   max="2155"
+                   placeholder="Año entre 1901 y 2155">
+        </div>
+
+        <div class="mb-3">
+            <label for="languageId" class="form-label">Idioma</label>
+            <select class="form-control" id="languageId" name="languageId" required>
+                <option value="">Seleccione un idioma</option>
+                <option th:each="language : ${languages}"
+                        th:value="${language.language_id}"
+                        th:text="${language.name}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">Código de Categoría</label>
+            <input type="number" class="form-control" id="categoryId" name="categoryId" required>
+        </div>
+
+        <!-- Otros campos sin valores predefinidos -->
+        <div class="mb-3">
+            <label for="rental_duration" class="form-label">Duración de Renta (días)</label>
+            <input type="number" class="form-control" id="rental_duration" name="rental_duration" min="0" max="255">
+        </div>
+
+        <div class="mb-3">
+            <label for="rental_rate" class="form-label">Tarifa de Renta</label>
+            <input type="number" step="0.01" class="form-control" id="rental_rate" name="rental_rate">
+        </div>
+
+        <div class="mb-3">
+            <label for="replacement_cost" class="form-label">Costo de Reemplazo</label>
+            <input type="number" step="0.01" class="form-control" id="replacement_cost" name="replacement_cost">
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="/films" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

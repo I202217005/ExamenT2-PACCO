@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Detalles del Film</h2>
+    <div class="card"><
+        <div class="card-body">
+            <h3 th:text="${film.title}"></h3>
+            <p><strong>Descripción:</strong> <span th:text="${film.description}"></span></p>
+            <p><strong>Año:</strong> <span th:text="${film.release_year}"></span></p>
+            <p><strong>Idioma:</strong> <span th:text="${film.language_name}"></span></p>
+            <p><strong>Duración:</strong> <span th:text="${film.rental_duration}"></span></p>
+            <p><strong>Tarifa:</strong> <span th:text="${film.rental_rate}"></span></p>
+        </div>
+        <div class="card-footer">
+            <a href="/films" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

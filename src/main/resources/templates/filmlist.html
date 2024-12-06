@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Films List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de Films</h2>
+        <a th:href="@{/films/new}" class="btn btn-success">Nuevo Film</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Año</th>
+            <th>Idioma</th>
+            <th>Duración</th>
+            <th>Tarifa</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${films}">
+            <td th:text="${film.film_id}"></td>
+            <td th:text="${film.title}"></td>
+            <td th:text="${film.description}"></td>
+            <td th:text="${film.release_year}"></td>
+            <td th:text="${film.language_name}"></td>
+            <td th:text="${film.rental_duration}"></td>
+            <td th:text="${film.rental_rate}"></td>
+            <td>
+                <a th:href="@{/films/{id}(id=${film.film_id})}" class="btn btn-info btn-sm">Ver</a>
+                <a th:href="@{/films/edit/{id}(id=${film.film_id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/films/delete/{id}(id=${film.film_id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Está seguro de eliminar esta película?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
